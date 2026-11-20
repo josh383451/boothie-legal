@@ -1,0 +1,262 @@
+/* Boothie legal site — shared styles.
+   Tokens mirror AGENTS.md "Design Tokens" and ui/theme/Color.kt. Text on a
+   pastel fill is ALWAYS charcoal-plum, never white (contrast rule). */
+
+/* Brand fonts, copied from app/src/main/res/font/ so the site needs no
+   third-party font CDN (the privacy policy promises exactly that).
+   font-display: swap keeps text visible while the 400KB loads. */
+@font-face {
+  font-family: "Quicksand";
+  src: url("fonts/quicksand_variable.ttf") format("truetype");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Nunito";
+  src: url("fonts/nunito_variable.ttf") format("truetype");
+  font-weight: 200 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light dark;
+
+  --bg: #fff7f9;          /* Cream */
+  --surface: #ffffff;
+  --text: #3d2c4e;        /* CharcoalPlum */
+  --muted: #6b5a7e;       /* PlumMuted */
+  --line: #3d2c4e;        /* 2dp plum "sticker" outline */
+  --shadow: rgba(255, 166, 210, 0.45);
+  --pill: #ffe4f1;        /* BubblegumContainer */
+  --pill-text: #3d2c4e;
+  --badge: #ffa6d2;       /* Bubblegum */
+  --accent: #a8e6cf;      /* Mint */
+  --link: #5a4670;
+  --note: #f1e7fb;        /* LavenderSoft */
+  --todo-bg: #ffe4f1;
+  --todo-line: #ff5fa2;   /* HotPink */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1e1428;        /* Ink */
+    --surface: #2a1f3d;   /* PlumSurface */
+    --text: #f5eef9;      /* SoftWhite */
+    --muted: #d9c7e8;
+    --line: #b79cd6;      /* OutlineDark */
+    --shadow: rgba(142, 111, 216, 0.3);
+    --pill: #3a2b52;      /* PlumVariant */
+    --pill-text: #f5eef9;
+    --badge: #e57fb4;     /* Rose */
+    --accent: #7fc8a9;    /* Sage */
+    --link: #d9c7e8;
+    --note: #3a2b52;
+    --todo-bg: #4a2036;
+    --todo-line: #ff7fb5;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 24px 20px 72px;
+  background: var(--bg);
+  color: var(--text);
+  /* Quicksand + Nunito are self-hosted from assets/fonts - no webfont
+     request, so the page never phones a third party. */
+  font-family: "Nunito", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-text-size-adjust: 100%;
+}
+
+main { max-width: 760px; margin: 0 auto; }
+
+/* ---- Skip link ------------------------------------------------------- */
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  padding: 12px 18px;
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  z-index: 10;
+}
+.skip:focus { left: 12px; top: 12px; }
+
+/* ---- Header ---------------------------------------------------------- */
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+  margin-bottom: 28px;
+}
+.wordmark {
+  display: inline-block;
+  padding: 6px 16px;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  background: var(--badge);
+  color: #3d2c4e; /* on-pastel text stays plum in both themes */
+  font-family: "Quicksand", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+.site-nav { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 15px; }
+.site-nav a { color: var(--muted); text-decoration: none; font-weight: 700; }
+.site-nav a:hover { text-decoration: underline; text-decoration-thickness: 2px; }
+.site-nav a[aria-current="page"] { color: var(--text); text-decoration: underline; text-decoration-thickness: 2px; }
+
+/* ---- Headings -------------------------------------------------------- */
+h1, h2, h3 {
+  font-family: "Quicksand", "Trebuchet MS", sans-serif;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+h1 { font-size: clamp(28px, 6vw, 40px); margin: 0 0 12px; }
+h2 { font-size: 22px; margin: 0 0 12px; }
+h3 { font-size: 18px; margin: 20px 0 6px; }
+
+.lede { margin: 0 0 8px; font-size: 18px; max-width: 40em; }
+.updated { margin: 0 0 28px; color: var(--muted); font-size: 15px; }
+
+/* ---- Cards ----------------------------------------------------------- */
+section {
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 24px;
+  padding: 24px;
+  margin: 0 0 20px;
+  box-shadow: 0 6px 0 var(--shadow);
+}
+
+/* ---- Links, lists, tables -------------------------------------------- */
+a { color: var(--link); text-decoration-thickness: 2px; }
+a:focus-visible,
+.wordmark:focus-visible,
+.button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+p { margin: 0 0 14px; }
+p:last-child, ul:last-child, ol:last-child, table:last-child { margin-bottom: 0; }
+ul, ol { margin: 0 0 14px; padding-left: 22px; }
+li + li { margin-top: 6px; }
+
+strong { font-weight: 700; }
+.note { font-size: 15px; color: var(--muted); }
+.small { font-size: 15px; }
+
+/* Paragraph that starts a sub-topic inside a section. */
+.section-note {
+  background: var(--note);
+  border-radius: 16px;
+  padding: 14px 18px;
+  font-size: 15px;
+}
+.section-note p:last-child { margin-bottom: 0; }
+
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+caption { text-align: left; font-size: 15px; color: var(--muted); padding-bottom: 8px; }
+th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+th { font-weight: 700; }
+tbody tr:last-child td { border-bottom: 0; }
+/* Wide tables scroll rather than squashing on a phone. */
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 0 0 14px; }
+.table-scroll table { min-width: 520px; }
+
+/* On a phone a 4-column table is unreadable, so each row becomes a stack of
+   labelled values instead. Falls back to a scrollable table above 640px. */
+@media (max-width: 640px) {
+  .table-scroll { overflow-x: visible; }
+  .table-scroll table { min-width: 0; }
+  .table-stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .table-stack tr { display: block; padding: 14px 0; border-top: 2px solid var(--line); }
+  .table-stack tr:first-child { border-top: 0; padding-top: 0; }
+  .table-stack td { display: block; border: 0; padding: 0 0 10px; }
+  .table-stack td:last-child { padding-bottom: 0; }
+  .table-stack td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+}
+
+/* ---- Pills and buttons ----------------------------------------------- */
+.pill {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #3d2c4e; /* on-pastel text stays plum in both themes */
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.button {
+  display: inline-block;
+  margin: 6px 0 10px;
+  padding: 14px 28px;
+  border: 2px solid #3d2c4e;
+  border-radius: 999px;
+  /* Lilac + plum in BOTH themes: the brand rule for text on pastel fills. */
+  background: #c9a7f5;
+  color: #3d2c4e;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* ---- Page picker (index only) ---------------------------------------- */
+.cards { display: grid; gap: 16px; grid-template-columns: 1fr; }
+@media (min-width: 780px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+.card { display: block; color: inherit; text-decoration: none; }
+.card section { margin: 0; height: 100%; }
+.card h2 { margin-bottom: 6px; }
+.card p { margin: 0; color: var(--muted); font-size: 16px; }
+.card:hover h2, .card:focus-visible h2 { text-decoration: underline; text-decoration-thickness: 2px; }
+.card:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; border-radius: 24px; }
+
+/* ---- Placeholder blocks (must be gone before publishing) ------------- */
+.todo {
+  background: var(--todo-bg);
+  border-left: 4px solid var(--todo-line);
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 15px;
+}
+.fill { font-weight: 700; text-decoration: underline wavy var(--todo-line); }
+
+/* ---- Footer ---------------------------------------------------------- */
+footer {
+  margin-top: 32px;
+  text-align: center;
+  font-size: 15px;
+  color: var(--muted);
+}
+footer p { margin: 0 0 8px; }
+footer nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 4px 16px; }
+footer a { color: var(--muted); }
+
+/* ---- Print ----------------------------------------------------------- */
+@media print {
+  :root { --bg: #fff; --surface: #fff; --text: #000; --muted: #333; --line: #999; --shadow: transparent; }
+  body { padding: 0; font-size: 11pt; }
+  .site-nav, footer nav, .skip, .button { display: none; }
+  section { box-shadow: none; border-radius: 0; break-inside: avoid; padding: 0 0 12px; border: 0; }
+  a { color: #000; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

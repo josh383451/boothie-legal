@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy policy — Boothie</title>
+<meta name="description" content="What Boothie collects, why, where it is stored and how to get it deleted. UK GDPR, plain English.">
+<link rel="canonical" href="https://boothieapp.co.uk/privacy/">
+<meta name="theme-color" content="#c9a7f5">
+<link rel="stylesheet" href="../assets/legal.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<main id="main">
+  <header class="site-header">
+    <a class="wordmark" href="../">Boothie</a>
+    <nav class="site-nav" aria-label="Legal pages">
+      <a href="../privacy/" aria-current="page">Privacy</a>
+      <a href="../terms/">Terms</a>
+      <a href="../delete-account/">Delete account</a>
+    </nav>
+  </header>
+
+  <h1>Privacy policy</h1>
+  <p class="updated">Last updated 20 November 2026</p>
+
+  <section>
+    <p>Boothie is a free map for finding and sharing photo booths across the UK. This policy explains what we collect, why, and the choices you have. We've kept it as plain and short as we honestly can.</p>
+    <p><strong>The short version:</strong> we collect as little as possible. If you just browse and search, we hold nothing about you at all. Signing in with Google adds your name, email and picture — that's the most we ever hold, and signing in is only needed to post (booths, reviews, edits, reports). We never show ads, sell data, or make anything public until a human checks it, and nothing you post is linked to your account.</p>
+  </section>
+
+  <section>
+    <h2>1. Who we are</h2>
+    <p>Boothie ("we") is the data controller for the information described here.</p>
+    <p class="todo">
+      <strong>Placeholder — fill in before publishing:</strong>
+      Boothie is run by <span class="fill">TODO-OPERATOR-NAME</span>,
+      <span class="fill">TODO-OPERATOR-ADDRESS</span>.
+      Replace this block with the operator's real name (or company name and number) and a
+      postal address, then delete the <code>todo</code> styling.
+    </p>
+    <p>Contact for anything in this policy: <strong>privacy@boothieapp.co.uk</strong>.</p>
+  </section>
+
+  <section>
+    <h2>2. What we collect and why</h2>
+    <div class="table-scroll">
+      <table class="table-stack">
+        <caption>Everything Boothie can hold, and when</caption>
+        <thead>
+          <tr><th scope="col">Data</th><th scope="col">When</th><th scope="col">Why</th><th scope="col">Stored where</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Data">Your Google account details (name, email, profile picture)</td>
+            <td data-label="When">Only if you choose to sign in. Signing in is optional and never needed to browse, but <strong>posting anything needs an account</strong></td>
+            <td data-label="Why">To let you post booths, reviews, edits and reports, to keep your saved booths across devices, and so you can delete your account later</td>
+            <td data-label="Stored where">Firebase Authentication (Google Cloud)</td>
+          </tr>
+          <tr>
+            <td data-label="Data">Your saved booths (favourites)</td>
+            <td data-label="When">When you tap a heart</td>
+            <td data-label="Why">To show your "My Boothies" list</td>
+            <td data-label="Stored where">Your device first; if you're signed in, a copy on our servers so it follows you to another device</td>
+          </tr>
+          <tr>
+            <td data-label="Data">Your device location</td>
+            <td data-label="When">Only if you allow location, and only while you're using the map ("near me", opening the app with permission already granted, or the "you are here" dot)</td>
+            <td data-label="Why">To find booths near you, and to show where you are on the map</td>
+            <td data-label="Stored where">Not stored by us — used in the moment</td>
+          </tr>
+          <tr>
+            <td data-label="Data">Search terms (city, postcode or street)</td>
+            <td data-label="When">When you search</td>
+            <td data-label="Why">To find that place on the map</td>
+            <td data-label="Stored where">Not stored by us — sent to Google's geocoder to turn text into coordinates</td>
+          </tr>
+          <tr>
+            <td data-label="Data">Booth submissions</td>
+            <td data-label="When">When you submit a booth (name, place, price, features, optional photos)</td>
+            <td data-label="Why">To add booths to the map after moderation</td>
+            <td data-label="Stored where">Cloud Firestore and Cloud Storage (Google Cloud)</td>
+          </tr>
+          <tr>
+            <td data-label="Data">Reviews</td>
+            <td data-label="When">When you rate or review a booth (heart rating, one line, optional photos)</td>
+            <td data-label="Why">To show other people what booths are like</td>
+            <td data-label="Stored where">Cloud Firestore and Cloud Storage (Google Cloud)</td>
+          </tr>
+          <tr>
+            <td data-label="Data">Edit suggestions</td>
+            <td data-label="When">When you suggest a correction to a booth</td>
+            <td data-label="Why">To keep listings accurate</td>
+            <td data-label="Stored where">Cloud Firestore (Google Cloud)</td>
+          </tr>
+          <tr>
+            <td data-label="Data">Booth reports</td>
+            <td data-label="When">When you report a problem with a booth (reason and an optional note)</td>
+            <td data-label="Why">So the boothkeepers can fix or remove listings</td>
+            <td data-label="Stored where">Cloud Firestore (Google Cloud)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><strong>What we never collect:</strong> your phone number, your contacts, your photo gallery (uploading only ever touches the photos you explicitly pick), or any advertising identifier. Your name and email are only involved if you sign in with Google, and they come from your Google account rather than being collected by us directly. The app contains <strong>no analytics, no advertising SDKs and no third-party trackers</strong> — we checked the build.</p>
+
+    <p><strong>Nothing you post is linked to your account.</strong> Booths, reviews, edit suggestions, reports and their photos are stored without any user ID. We know <em>that</em> someone signed in to post (our security rules require it), but the content itself cannot be traced back to a person — not even by us.</p>
+  </section>
+
+  <section>
+    <h2>3. Location, and staying in control</h2>
+    <p>Location is the most personal thing we touch, so it's opt-in on purpose:</p>
+    <ul>
+      <li>The app works fully without location — you can always search a city, postcode or street instead.</li>
+      <li>We only ask for permission when you tap "near me", after explaining why.</li>
+      <li>While the map is open we show a dot for where you are, so you can see the booths around you. It updates only while Boothie is on screen.</li>
+      <li>We never use your location in the background. Once you leave the app, nothing keeps checking where you are.</li>
+      <li>Your location is used to search for nearby booths and is not saved on our servers.</li>
+    </ul>
+    <p>Google Play Services performs the location lookup and the geocoding on our behalf; their handling of that data is governed by the <a href="https://policies.google.com/">Google Terms of Service</a>.</p>
+  </section>
+
+  <section>
+    <h2>4. Your content and moderation</h2>
+    <p>Anything you post (booth submissions, reviews, edit suggestions, reports) lands in a <strong>pending queue that the public cannot see</strong>. A human moderator approves it before it appears on the map, and can reject it. We may remove content that breaks our rules. Please don't post personal details about yourself or anyone else in submissions or reviews — for example photos of people, or home addresses.</p>
+    <p><strong>Reporting.</strong> Every booth has a "Report a problem" option (closed, wrong details, a photo that shouldn't be there, or anything else). Reports go to the boothkeepers, not to the public, and never show who sent them.</p>
+  </section>
+
+  <section>
+    <h2>5. Who processes our data</h2>
+    <p>We use Google's Firebase platform to run Boothie:</p>
+    <ul>
+      <li><strong>Cloud Firestore</strong> and <strong>Cloud Storage</strong> hold the booth listings, reviews, edit queues, reports, submission photos and saved-favourite lists. These are hosted in Google's <strong>London (europe-west2)</strong> region.</li>
+      <li><strong>Firebase Authentication</strong> runs the Google sign-in that lets you post. It runs on Google's global infrastructure (primarily the USA).</li>
+      <li><strong>Cloud Functions</strong> (also <code>europe-west2</code>) runs the one job that deletes an account and its saved booths when you ask it to.</li>
+      <li><strong>Google Maps Platform</strong> and <strong>Google Play Services</strong> provide the map, location fixes and geocoding described above.</li>
+    </ul>
+    <p>Where data leaves the UK, Google transfers it under the safeguard of the EU Standard Contractual Clauses (<a href="https://cloud.google.com/terms/eu-model-contract-clause">Google's SCC page</a>). We never sell your data, and we don't share it with advertisers — there are no ad networks in the app at all.</p>
+
+    <h3>This website</h3>
+    <p>These pages are plain, static files. We set <strong>no cookies</strong>, run no analytics and load nothing from third parties — even the fonts are your device's own. The site is served by <strong>GitHub Pages</strong>, which keeps standard server logs (including IP addresses) for security and abuse prevention; that processing is covered by <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>.</p>
+  </section>
+
+  <section>
+    <h2>6. How long we keep things</h2>
+    <ul>
+      <li><strong>Saved favourites</strong> stay on your device until you unsave them or clear the app's data. If you're signed in, the server copy is deleted with your account, or when you unsave the last booth.</li>
+      <li><strong>Submissions, reviews, edits and reports</strong> are kept while the listing or review is live. They contain no user ID, so they stay anonymous even after an account is deleted. Rejected items are kept for moderation-record purposes and can be deleted on request.</li>
+      <li><strong>Your account</strong> (Google name, email, picture and the saved-booths copy) is deleted straight away when you use <strong>Profile → Delete account</strong>, or when we action a deletion request sent to the address below.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>7. Your rights (UK GDPR)</h2>
+    <p>You can ask us to:</p>
+    <ul>
+      <li>tell you what data we hold about you (<strong>access</strong>);</li>
+      <li>correct it (<strong>rectification</strong>);</li>
+      <li>delete it (<strong>erasure</strong>);</li>
+      <li>stop or restrict how we use it (<strong>objection</strong> or <strong>restriction</strong>);</li>
+      <li>give you a copy to take elsewhere (<strong>portability</strong>).</li>
+    </ul>
+    <p>Email <strong>privacy@boothieapp.co.uk</strong>. Because the content you post carries no user ID, tell us roughly what and when you submitted (or screenshot it) and we'll find it.</p>
+    <p>You can also clear most data yourself in seconds:</p>
+    <ul>
+      <li><strong>Profile → Delete account</strong> removes your account and saved booths straight away (anything you submitted stays anonymous).</li>
+      <li>Unsave your hearts one by one.</li>
+      <li>Deleting the app removes its local data from your device.</li>
+    </ul>
+    <p>Deletion requests can also be made from outside the app at <a href="../delete-account/">boothieapp.co.uk/delete-account</a>.</p>
+    <p>You have the right to complain to the <strong>Information Commissioner's Office</strong> at <a href="https://ico.org.uk/">ico.org.uk</a> — though we'd love the chance to fix things first, so please email us too.</p>
+  </section>
+
+  <section>
+    <h2>8. Children and teens</h2>
+    <p>Boothie is designed with teens in mind and is intended for people aged <strong>13 and over</strong> (13 is the age at which you can consent to data processing yourself in the UK). We don't knowingly collect data from children under 13 — if you believe an under-13 has given us data, email us and we'll delete it.</p>
+    <p>Privacy-friendly choices are built in for everyone, not just teens: no public profiles, no private messaging, no social graph to follow people, location strictly opt-in, and moderation before anything you post is public.</p>
+  </section>
+
+  <section>
+    <h2>9. Security</h2>
+    <p>Data travels over encrypted connections and sits in access-controlled Google Cloud services. Our own access is limited to moderating the content you submit. No system is perfectly secure, but we follow good practice and keep the data we hold to a minimum precisely so there's less to protect.</p>
+  </section>
+
+  <section>
+    <h2>10. Changes to this policy</h2>
+    <p>If we change it, we'll update the "last updated" date on this page and show the new version in the app. If a change is significant — for example adding a new kind of data, or a new feature that uses what we hold — we'll say so clearly in the app before it happens.</p>
+  </section>
+
+  <section>
+    <h2>11. Contact</h2>
+    <p>Questions, requests or complaints: <strong>privacy@boothieapp.co.uk</strong>.</p>
+    <p class="note">See also our <a href="../terms/">terms of service</a> and <a href="../delete-account/">how to delete your account</a>.</p>
+  </section>
+
+  <footer>
+    <p>Boothie helps you find photo booths around the UK.</p>
+    <nav aria-label="Footer">
+      <a href="../privacy/">Privacy</a>
+      <a href="../terms/">Terms</a>
+      <a href="../delete-account/">Delete account</a>
+    </nav>
+  </footer>
+</main>
+</body>
+</html>
