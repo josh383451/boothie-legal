@@ -144,6 +144,7 @@
           <label class="opt"><input type="checkbox" name="q8_features" value="open_now"><span>Seeing whether it's open right now</span></label>
           <label class="opt"><input type="checkbox" name="q8_features" value="share"><span>Sharing a booth with a friend</span></label>
           <label class="opt"><input type="checkbox" name="q8_features" value="directions"><span>Directions to the booth</span></label>
+          <label class="opt"><input type="checkbox" name="q8_features" value="none" id="q8_none"><span>None of these — I wouldn't use an app for this</span></label>
         </div>
         <p class="note" id="q8_hint" role="status" aria-live="polite"></p>
       </fieldset>
@@ -154,6 +155,7 @@
           <label class="opt"><input type="radio" name="q9_add" value="yes" required><span>Yes</span></label>
           <label class="opt"><input type="radio" name="q9_add" value="maybe"><span>Maybe, if it was quick</span></label>
           <label class="opt"><input type="radio" name="q9_add" value="no"><span>No</span></label>
+          <label class="opt"><input type="radio" name="q9_add" value="nouse"><span>I don't use photo booths</span></label>
           <label class="opt"><input type="radio" name="q9_add" value="unsure"><span>I wouldn't know how to check it wasn't already there</span></label>
         </div>
       </fieldset>
@@ -166,6 +168,7 @@
           <label class="opt"><input type="radio" name="q10_travel" value="30m"><span>Up to half an hour</span></label>
           <label class="opt"><input type="radio" name="q10_travel" value="1h"><span>Up to an hour</span></label>
           <label class="opt"><input type="radio" name="q10_travel" value="dayout"><span>As far as it takes, if it's a day out</span></label>
+          <label class="opt"><input type="radio" name="q10_travel" value="none"><span>I wouldn't travel for one — I don't use booths</span></label>
         </div>
       </fieldset>
     </section>
@@ -242,16 +245,30 @@
   var boxes = Array.prototype.slice.call(
     form.querySelectorAll('input[name="q8_features"]')
   );
+  // "None of these" is an answer, not a fourth feature: ticking it clears the
+  // others, ticking any other clears it, and it is never disabled by the
+  // three-pick cap (otherwise a non-user could not pick it at all).
+  var noneBox = form.querySelector('#q8_none');
   var interacted = false;
 
+  function chosenFeatures() {
+    if (noneBox.checked) return 0;
+    return boxes.filter(function (b) { return b.checked; }).length;
+  }
+
   function refreshFeatures() {
-    var picked = boxes.filter(function (b) { return b.checked; }).length;
+    var picked = chosenFeatures();
     boxes.forEach(function (b) {
-      if (!b.checked) b.disabled = picked >= 3;
+      // "None of these" is never disabled, and never disables the others: a
+      // mistaken tap must not lock the group, and picking a feature clears it.
+      if (b === noneBox) { b.disabled = false; return; }
+      b.disabled = !b.checked && picked >= 3;
     });
     // Don't announce anything until the person has touched the group.
     if (!interacted) return;
-    if (picked >= 3) {
+    if (noneBox.checked) {
+      hint.textContent = 'Okay — nothing here, then.';
+    } else if (picked >= 3) {
       hint.textContent = 'That’s three. Untick one to pick a different one.';
     } else if (picked === 0) {
       hint.textContent = 'Pick up to three.';
@@ -260,7 +277,19 @@
     }
   }
   boxes.forEach(function (b) {
-    b.addEventListener('change', function () { interacted = true; refreshFeatures(); });
+    b.addEventListener('change', function () {
+      interacted = true;
+      if (b.checked) {
+        if (b === noneBox) {
+          boxes.forEach(function (other) {
+            if (other !== noneBox) other.checked = false;
+          });
+        } else {
+          noneBox.checked = false;
+        }
+      }
+      refreshFeatures();
+    });
   });
   refreshFeatures();
 
@@ -282,13 +311,16 @@
   }
 
   function buildFields() {
-    // The disabled attribute already stops a fourth pick in the UI. Slicing
-    // here is belt-and-braces for a restored form (browser back/forward), and
-    // because the rules deny any list longer than three — sending four would
-    // lose the whole response, not just the extra answer.
-    var features = boxes.filter(function (b) { return b.checked; })
-      .map(function (b) { return b.value; })
-      .slice(0, 3);
+    // The disabled attribute already stops a fourth pick in the UI, and the
+    // "none" box clears the others when ticked. Slicing here is belt-and-braces
+    // for a restored form (browser back/forward): the rules deny any list longer
+    // than three, and they deny "none" arriving next to a real feature, so a
+    // malformed list would lose the whole response rather than one answer.
+    var features = noneBox.checked
+      ? ['none']
+      : boxes.filter(function (b) { return b.checked; })
+          .map(function (b) { return b.value; })
+          .slice(0, 3);
 
     var fields = {
       formVersion: num(FORM_VERSION),
