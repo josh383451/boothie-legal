@@ -37,6 +37,7 @@
   --note: #f1e7fb;        /* LavenderSoft */
   --todo-bg: #ffe4f1;
   --todo-line: #ff5fa2;   /* HotPink */
+  --danger: #a3123f;      /* error text: 6.4:1 on cream */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -55,6 +56,7 @@
     --note: #3a2b52;
     --todo-bg: #4a2036;
     --todo-line: #ff7fb5;
+    --danger: #ffa8c6;    /* error text: high contrast on ink */
   }
 }
 
@@ -215,6 +217,104 @@ tbody tr:last-child td { border-bottom: 0; }
   font-weight: 700;
   text-decoration: none;
 }
+
+/* ---- Survey form (research page) ------------------------------------- */
+/* Native radios, checkboxes and textarea with brand chrome: a real control
+   keeps platform keyboard + screen-reader behaviour, the 2dp plum outline and
+   the 48dp target are ours. Nothing here runs unless the page asks for it. */
+[hidden] { display: none !important; }
+
+fieldset { border: 0; margin: 0 0 22px; padding: 0; }
+fieldset:last-of-type { margin-bottom: 0; }
+
+legend {
+  max-width: 100%;
+  margin: 0 0 10px;
+  padding: 0;
+  font-family: "Quicksand", "Trebuchet MS", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.q-num {
+  display: inline-block;
+  min-width: 24px;
+  margin-right: 6px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--badge);
+  color: #3d2c4e; /* on-pastel text stays plum in both themes */
+  font-size: 14px;
+  text-align: center;
+  vertical-align: 2px;
+}
+
+.opts { display: grid; gap: 8px; }
+@media (min-width: 620px) { .opts { grid-template-columns: 1fr 1fr; } }
+
+.opt {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 48px;
+  padding: 11px 14px;
+  border: 2px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  font-size: 16px;
+  line-height: 1.4;
+  cursor: pointer;
+}
+.opt:hover { background: var(--note); }
+.opt input {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin: 2px 0 0;
+  accent-color: #c9a7f5;
+}
+/* :has keeps the checked state on the whole tile. The input itself still
+   reports its state to assistive tech — this is decoration only. */
+.opt:has(input:checked) { background: var(--pill); }
+.opt:has(input:focus-visible) { outline: 3px solid var(--accent); outline-offset: 2px; }
+.opt:has(input:disabled) { background: var(--surface); cursor: default; }
+.opt input:disabled ~ span { opacity: 0.5; }
+
+textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  resize: vertical;
+}
+textarea:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+/* Honeypot: off-screen but still a real field, so a naive bot fills it in. */
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+button { font: inherit; cursor: pointer; }
+.button:disabled { opacity: 0.55; cursor: not-allowed; }
+.note.counter { margin: 6px 0 0; text-align: right; }
+.note.error { color: var(--danger); font-weight: 700; }
 
 /* ---- Page picker (index only) ---------------------------------------- */
 .cards { display: grid; gap: 16px; grid-template-columns: 1fr; }

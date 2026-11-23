@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Help us build Boothie — a 90-second survey</title>
+<meta name="description" content="Ten quick questions about photo booths, to decide what Boothie should be. Anonymous, no sign-up.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://boothieapp.co.uk/research/">
+<meta name="theme-color" content="#c9a7f5">
+<link rel="stylesheet" href="../assets/legal.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<main id="main">
+  <header class="site-header">
+    <a class="wordmark" href="../">Boothie</a>
+    <nav class="site-nav" aria-label="Site pages">
+      <a href="../privacy/">Privacy</a>
+      <a href="../terms/">Terms</a>
+      <a href="../delete-account/">Delete account</a>
+    </nav>
+  </header>
+
+  <h1>Help us build this</h1>
+  <p class="lede">Ten quick questions about photo booths. It takes about 90 seconds.</p>
+
+  <section>
+    <p><strong>Your answers are anonymous</strong> and are only used to decide what to build.
+    Every question is a single tap except one optional comment box, and there's nothing to
+    sign up to: no name, no email, no account.</p>
+  </section>
+
+  <div class="todo" id="not-ready" hidden>
+    <strong>Survey not switched on.</strong>
+    This build has no Firestore web API key, so answers can't be sent yet.
+  </div>
+
+  <form id="survey" action="#" method="post">
+    <section>
+      <h2>About you</h2>
+
+      <fieldset>
+        <legend><span class="q-num">1</span> Which phone do you use most?</legend>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q1_phone" value="iphone" required><span>iPhone</span></label>
+          <label class="opt"><input type="radio" name="q1_phone" value="android"><span>Android</span></label>
+          <label class="opt"><input type="radio" name="q1_phone" value="other"><span>Something else</span></label>
+          <label class="opt"><input type="radio" name="q1_phone" value="none"><span>I don't have a smartphone</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="q-num">2</span> How old are you?</legend>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q2_age" value="13-15" required><span>13 to 15</span></label>
+          <label class="opt"><input type="radio" name="q2_age" value="16-17"><span>16 or 17</span></label>
+          <label class="opt"><input type="radio" name="q2_age" value="18-21"><span>18 to 21</span></label>
+          <label class="opt"><input type="radio" name="q2_age" value="22-25"><span>22 to 25</span></label>
+          <label class="opt"><input type="radio" name="q2_age" value="26plus"><span>26 or over</span></label>
+          <label class="opt"><input type="radio" name="q2_age" value="pnts"><span>Prefer not to say</span></label>
+        </div>
+      </fieldset>
+    </section>
+
+    <section>
+      <h2>What you actually do</h2>
+
+      <fieldset>
+        <legend><span class="q-num">3</span> When did you last use a photo booth?</legend>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q3_last" value="week" required><span>In the last week</span></label>
+          <label class="opt"><input type="radio" name="q3_last" value="month"><span>In the last month</span></label>
+          <label class="opt"><input type="radio" name="q3_last" value="3months"><span>In the last three months</span></label>
+          <label class="opt"><input type="radio" name="q3_last" value="year"><span>In the last year</span></label>
+          <label class="opt"><input type="radio" name="q3_last" value="longer"><span>Longer ago than that</span></label>
+          <label class="opt"><input type="radio" name="q3_last" value="never"><span>Never</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="q-num">4</span> The last time you used one, or looked for one, how did you find it?</legend>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q4_found" value="walked" required><span>I walked past it</span></label>
+          <label class="opt"><input type="radio" name="q4_found" value="friend"><span>A friend showed me or told me</span></label>
+          <label class="opt"><input type="radio" name="q4_found" value="google"><span>I searched on Google</span></label>
+          <label class="opt"><input type="radio" name="q4_found" value="social"><span>I saw it on TikTok or Instagram</span></label>
+          <label class="opt"><input type="radio" name="q4_found" value="event"><span>It was at an event, party or venue</span></label>
+          <label class="opt"><input type="radio" name="q4_found" value="couldnt"><span>I couldn't find one</span></label>
+          <label class="opt"><input type="radio" name="q4_found" value="neverlooked"><span>Not applicable, I've never looked</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="q-num">5</span> How many photo booths do you know of near where you live?</legend>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q5_known" value="none" required><span>None</span></label>
+          <label class="opt"><input type="radio" name="q5_known" value="one"><span>One</span></label>
+          <label class="opt"><input type="radio" name="q5_known" value="2-3"><span>Two or three</span></label>
+          <label class="opt"><input type="radio" name="q5_known" value="4plus"><span>Four or more</span></label>
+          <label class="opt"><input type="radio" name="q5_known" value="neverthought"><span>I've never thought about it</span></label>
+        </div>
+      </fieldset>
+    </section>
+
+    <section>
+      <h2>The idea</h2>
+      <p class="section-note">
+        Imagine an app with a map of photo booths near you, each one with photos,
+        the price per strip, and reviews from people who've been.
+      </p>
+
+      <fieldset>
+        <legend><span class="q-num">6</span> How likely would you be to try an app like that?</legend>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q6_intent" value="1" required><span>Definitely would</span></label>
+          <label class="opt"><input type="radio" name="q6_intent" value="2"><span>Probably would</span></label>
+          <label class="opt"><input type="radio" name="q6_intent" value="3"><span>Not sure</span></label>
+          <label class="opt"><input type="radio" name="q6_intent" value="4"><span>Probably wouldn't</span></label>
+          <label class="opt"><input type="radio" name="q6_intent" value="5"><span>Definitely wouldn't</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="q-num">7</span> What would put you off using it? <span class="note">(optional)</span></legend>
+        <label class="visually-hidden" for="q7_offput">What would put you off using it?</label>
+        <textarea id="q7_offput" name="q7_offput" maxlength="200" rows="3"
+          placeholder="One line is plenty"></textarea>
+        <p class="note counter"><span id="q7_count">0</span> of 200 characters</p>
+      </fieldset>
+    </section>
+
+    <section>
+      <h2>Features</h2>
+
+      <fieldset>
+        <legend><span class="q-num">8</span> Which of these would you actually use? <span class="note">Pick up to three.</span></legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="q8_features" value="find_near"><span>Finding booths near me</span></label>
+          <label class="opt"><input type="checkbox" name="q8_features" value="photos"><span>Seeing photos of each booth</span></label>
+          <label class="opt"><input type="checkbox" name="q8_features" value="price"><span>Seeing how much a strip costs</span></label>
+          <label class="opt"><input type="checkbox" name="q8_features" value="favourites"><span>Saving my favourites</span></label>
+          <label class="opt"><input type="checkbox" name="q8_features" value="review"><span>Leaving a review</span></label>
+          <label class="opt"><input type="checkbox" name="q8_features" value="open_now"><span>Seeing whether it's open right now</span></label>
+          <label class="opt"><input type="checkbox" name="q8_features" value="share"><span>Sharing a booth with a friend</span></label>
+          <label class="opt"><input type="checkbox" name="q8_features" value="directions"><span>Directions to the booth</span></label>
+        </div>
+        <p class="note" id="q8_hint" role="status" aria-live="polite"></p>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="q-num">9</span> If you found a booth that wasn't in the app, would you add it?</legend>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q9_add" value="yes" required><span>Yes</span></label>
+          <label class="opt"><input type="radio" name="q9_add" value="maybe"><span>Maybe, if it was quick</span></label>
+          <label class="opt"><input type="radio" name="q9_add" value="no"><span>No</span></label>
+          <label class="opt"><input type="radio" name="q9_add" value="unsure"><span>I wouldn't know how to check it wasn't already there</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="q-num">10</span> How far would you travel for a photo booth you'd seen photos of and liked?</legend>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q10_travel" value="passing" required><span>I'd only use one I was passing anyway</span></label>
+          <label class="opt"><input type="radio" name="q10_travel" value="15m"><span>Up to 15 minutes</span></label>
+          <label class="opt"><input type="radio" name="q10_travel" value="30m"><span>Up to half an hour</span></label>
+          <label class="opt"><input type="radio" name="q10_travel" value="1h"><span>Up to an hour</span></label>
+          <label class="opt"><input type="radio" name="q10_travel" value="dayout"><span>As far as it takes, if it's a day out</span></label>
+        </div>
+      </fieldset>
+    </section>
+
+    <section>
+      <div class="hp" aria-hidden="true">
+        <label for="website">Leave this empty</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <button class="button" type="submit" id="send">Send answers</button>
+      <p class="note" id="status" role="status" aria-live="polite"></p>
+      <noscript><p class="note">This survey needs JavaScript to send your answers.</p></noscript>
+    </section>
+  </form>
+
+  <section id="done" hidden tabindex="-1">
+    <h2>Thank you</h2>
+    <p>That's genuinely useful. Answers like these decide what gets built first, so thank you for the two minutes.</p>
+    <p class="note">Nothing else to do. You can close this page.</p>
+  </section>
+
+  <footer>
+    <p>Boothie helps you find photo booths around the UK.</p>
+    <nav aria-label="Footer">
+      <a href="../">Home</a>
+      <a href="../privacy/">Privacy</a>
+      <a href="../terms/">Terms</a>
+      <a href="../delete-account/">Delete account</a>
+    </nav>
+  </footer>
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  // Firestore project + a browser key restricted to boothieapp.co.uk.
+  // The key is public by design (it is in the page source); the RULES are what
+  // stop it being useful for anything except creating a survey response.
+  // It must be its own key: the app's is restricted to the Android package and
+  // cannot be used from a web page.
+  var PROJECT_ID = 'boothie-ff901';
+  var API_KEY = 'AIzaSyBRuiNiCvEpGoSp_RFoy8kfvQf9eWrX3Xk';
+  var FORM_VERSION = 1;
+  var COLLECTION = 'research_responses';
+
+  var form = document.getElementById('survey');
+  var send = document.getElementById('send');
+  var status = document.getElementById('status');
+  var done = document.getElementById('done');
+  var notReady = document.getElementById('not-ready');
+  var hint = document.getElementById('q8_hint');
+  var note = document.getElementById('q7_offput');
+  var count = document.getElementById('q7_count');
+  var hp = document.getElementById('website');
+
+  // A real browser key is ~39 chars. An empty string means nobody has pasted
+  // one in yet, and the page says so instead of failing on first send.
+  var configured = API_KEY.length >= 30;
+  if (!configured) {
+    notReady.hidden = false;
+    send.disabled = true;
+  }
+
+  // --- character counter -------------------------------------------------
+  function updateCount() {
+    count.textContent = String(note.value.length);
+  }
+  note.addEventListener('input', updateCount);
+  updateCount();
+
+  // --- "pick up to three" ------------------------------------------------
+  var boxes = Array.prototype.slice.call(
+    form.querySelectorAll('input[name="q8_features"]')
+  );
+  var interacted = false;
+
+  function refreshFeatures() {
+    var picked = boxes.filter(function (b) { return b.checked; }).length;
+    boxes.forEach(function (b) {
+      if (!b.checked) b.disabled = picked >= 3;
+    });
+    // Don't announce anything until the person has touched the group.
+    if (!interacted) return;
+    if (picked >= 3) {
+      hint.textContent = 'That’s three. Untick one to pick a different one.';
+    } else if (picked === 0) {
+      hint.textContent = 'Pick up to three.';
+    } else {
+      hint.textContent = 'Picked ' + picked + ' of 3.';
+    }
+  }
+  boxes.forEach(function (b) {
+    b.addEventListener('change', function () { interacted = true; refreshFeatures(); });
+  });
+  refreshFeatures();
+
+  // --- payload -----------------------------------------------------------
+  function picked(name) {
+    var el = form.querySelector('input[name="' + name + '"]:checked');
+    return el ? el.value : null;
+  }
+
+  function str(v) { return { stringValue: v }; }
+  function num(v) { return { integerValue: String(v) }; }
+  function list(values) {
+    return { arrayValue: { values: values.map(str) } };
+  }
+
+  function setStatus(message, isError) {
+    status.textContent = message || '';
+    status.classList.toggle('error', Boolean(isError));
+  }
+
+  function buildFields() {
+    // The disabled attribute already stops a fourth pick in the UI. Slicing
+    // here is belt-and-braces for a restored form (browser back/forward), and
+    // because the rules deny any list longer than three — sending four would
+    // lose the whole response, not just the extra answer.
+    var features = boxes.filter(function (b) { return b.checked; })
+      .map(function (b) { return b.value; })
+      .slice(0, 3);
+
+    var fields = {
+      formVersion: num(FORM_VERSION),
+      createdAt: str(new Date().toISOString()),
+      q1_phone: str(picked('q1_phone')),
+      q2_age: str(picked('q2_age')),
+      q3_last: str(picked('q3_last')),
+      q4_found: str(picked('q4_found')),
+      q5_known: str(picked('q5_known')),
+      q6_intent: num(Number(picked('q6_intent'))),
+      q8_features: list(features),
+      q9_add: str(picked('q9_add')),
+      q10_travel: str(picked('q10_travel'))
+    };
+
+    var text = note.value.trim();
+    if (text) fields.q7_offput = str(text);
+
+    return fields;
+  }
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    if (hp.value) {
+      // Honeypot: a bot filled a field no human can see. Say nothing.
+      form.hidden = true;
+      done.hidden = false;
+      done.focus();
+      return;
+    }
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    if (boxes.filter(function (b) { return b.checked; }).length === 0) {
+      hint.textContent = 'Pick at least one.';
+      boxes[0].focus();
+      return;
+    }
+
+    send.disabled = true;
+    setStatus('Sending…', false);
+
+    var url = 'https://firestore.googleapis.com/v1/projects/' + PROJECT_ID +
+      '/databases/(default)/documents/' + COLLECTION +
+      '?key=' + encodeURIComponent(API_KEY);
+
+    fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ fields: buildFields() })
+    })
+      .then(function (response) {
+        if (!response.ok) {
+          return response.text().then(function (body) {
+            var error = new Error(response.status + ' ' + body.slice(0, 200));
+            error.status = response.status;
+            throw error;
+          });
+        }
+        form.hidden = true;
+        done.hidden = false;
+        done.focus();
+      })
+      .catch(function (error) {
+        console.error(error);
+        send.disabled = false;
+        // A rejected write (rules not published yet, key restricted wrongly) is
+        // not the visitor's connection — don't tell them to retry forever.
+        var rejected = error.status === 400 || error.status === 403 || error.status === 404;
+        setStatus(rejected
+          ? 'This survey isn’t accepting answers right now. Sorry — please try later.'
+          : 'That didn’t send. Check your connection and try again.', true);
+      });
+  });
+})();
+</script>
+</body>
+</html>
