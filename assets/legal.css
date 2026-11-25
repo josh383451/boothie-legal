@@ -1,6 +1,9 @@
 /* Boothie legal site — shared styles.
    Tokens mirror AGENTS.md "Design Tokens" and ui/theme/Color.kt. Text on a
-   pastel fill is ALWAYS espresso, never white (contrast rule). */
+   pastel fill is ALWAYS espresso, never white (contrast rule).
+   LIGHT-ONLY by owner decision (25 Nov 2026): system dark mode is deliberately
+   ignored so every visitor sees the cream/coral pastel brand. The app keeps its
+   tuned dark theme; this small site does not. */
 
 /* Brand fonts, copied from app/src/main/res/font/ so the site needs no
    third-party font CDN (the privacy policy promises exactly that).
@@ -28,7 +31,7 @@
 }
 
 :root {
-  color-scheme: light dark;
+  color-scheme: light; /* light-only: never let the UA paint dark controls */
 
   --primary: #e98298;     /* Coral */
   --on-primary: #3a2e2c;  /* deep espresso on coral: 5.8:1 */
@@ -51,29 +54,9 @@
   --danger: #b23a4e;      /* error text: 5.5:1 on warm cream */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary: #f094a8;   /* CoralLight */
-    --on-primary: #211e20; /* Ink on coral light: 7.5:1 */
-    --bg: #211e20;        /* Ink */
-    --surface: #30292c;   /* EspressoSurface */
-    --text: #fff1ed;      /* SoftWhite */
-    --muted: #d8c7c4;
-    --line: #625258;      /* OutlineDark */
-    --shadow: rgba(240, 148, 168, 0.18);
-    --pill: #3a3134;      /* EspressoVariant */
-    --pill-text: #fff1ed;
-    --badge: #f094a8;     /* CoralLight */
-    --accent: #9cc5e0;    /* PowderBlueLight */
-    --focus: #9cc5e0;
-    --link: #f0b8c4;
-    --on-pastel: #493d3b;
-    --note: #26343d;
-    --todo-bg: #4a2530;
-    --todo-line: #f094a8;
-    --danger: #ffa8b4;    /* error text: high contrast on ink */
-  }
-}
+/* No dark-mode block: the site is light-only (see the header comment). The
+   dark tokens live on in the app's ui/theme/Color.kt if they are ever needed
+   here again. */
 
 * { box-sizing: border-box; }
 
