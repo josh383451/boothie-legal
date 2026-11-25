@@ -1,21 +1,28 @@
 /* Boothie legal site — shared styles.
    Tokens mirror AGENTS.md "Design Tokens" and ui/theme/Color.kt. Text on a
-   pastel fill is ALWAYS charcoal-plum, never white (contrast rule). */
+   pastel fill is ALWAYS espresso, never white (contrast rule). */
 
 /* Brand fonts, copied from app/src/main/res/font/ so the site needs no
    third-party font CDN (the privacy policy promises exactly that).
-   font-display: swap keeps text visible while the 400KB loads. */
+   font-display: swap keeps text visible while the fonts load. */
 @font-face {
-  font-family: "Quicksand";
-  src: url("fonts/quicksand_variable.ttf") format("truetype");
-  font-weight: 300 700;
+  font-family: "Fraunces";
+  src: url("fonts/Fraunces-Variable.ttf") format("truetype");
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Nunito";
-  src: url("fonts/nunito_variable.ttf") format("truetype");
-  font-weight: 200 1000;
+  font-family: "Poppins";
+  src: url("fonts/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("fonts/Poppins-Medium.ttf") format("truetype");
+  font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
@@ -23,40 +30,48 @@
 :root {
   color-scheme: light dark;
 
-  --bg: #fff7f9;          /* Cream */
+  --primary: #e98298;     /* Coral */
+  --on-primary: #3a2e2c;  /* deep espresso on coral: 5.8:1 */
+  --bg: #fff8f3;          /* WarmCream */
   --surface: #ffffff;
-  --text: #3d2c4e;        /* CharcoalPlum */
-  --muted: #6b5a7e;       /* PlumMuted */
-  --line: #3d2c4e;        /* 2dp plum "sticker" outline */
-  --shadow: rgba(255, 166, 210, 0.45);
-  --pill: #ffe4f1;        /* BubblegumContainer */
-  --pill-text: #3d2c4e;
-  --badge: #ffa6d2;       /* Bubblegum */
-  --accent: #a8e6cf;      /* Mint */
-  --link: #5a4670;
-  --note: #f1e7fb;        /* LavenderSoft */
-  --todo-bg: #ffe4f1;
-  --todo-line: #ff5fa2;   /* HotPink */
-  --danger: #a3123f;      /* error text: 6.4:1 on cream */
+  --text: #493d3b;        /* Espresso */
+  --muted: #6e5f5b;       /* EspressoMuted */
+  --line: #493d3b;        /* 2dp espresso "sticker" outline */
+  --shadow: rgba(233, 130, 152, 0.32);
+  --pill: #fff0f3;        /* BabyPink */
+  --pill-text: #493d3b;
+  --badge: #f6c1cd;       /* Blush */
+  --accent: #a8cde5;      /* PowderBlue */
+  --focus: #5f93b8;       /* deeper powder blue: 3:1 on warm cream */
+  --link: #8a4a5a;        /* deep rose: 6.2:1 on warm cream */
+  --on-pastel: #493d3b;   /* text on a pastel fill is always dark */
+  --note: #eaf3fa;        /* powder-blue tint */
+  --todo-bg: #ffe3e8;
+  --todo-line: #c9566f;   /* heart rose */
+  --danger: #b23a4e;      /* error text: 5.5:1 on warm cream */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #1e1428;        /* Ink */
-    --surface: #2a1f3d;   /* PlumSurface */
-    --text: #f5eef9;      /* SoftWhite */
-    --muted: #d9c7e8;
-    --line: #b79cd6;      /* OutlineDark */
-    --shadow: rgba(142, 111, 216, 0.3);
-    --pill: #3a2b52;      /* PlumVariant */
-    --pill-text: #f5eef9;
-    --badge: #e57fb4;     /* Rose */
-    --accent: #7fc8a9;    /* Sage */
-    --link: #d9c7e8;
-    --note: #3a2b52;
-    --todo-bg: #4a2036;
-    --todo-line: #ff7fb5;
-    --danger: #ffa8c6;    /* error text: high contrast on ink */
+    --primary: #f094a8;   /* CoralLight */
+    --on-primary: #211e20; /* Ink on coral light: 7.5:1 */
+    --bg: #211e20;        /* Ink */
+    --surface: #30292c;   /* EspressoSurface */
+    --text: #fff1ed;      /* SoftWhite */
+    --muted: #d8c7c4;
+    --line: #625258;      /* OutlineDark */
+    --shadow: rgba(240, 148, 168, 0.18);
+    --pill: #3a3134;      /* EspressoVariant */
+    --pill-text: #fff1ed;
+    --badge: #f094a8;     /* CoralLight */
+    --accent: #9cc5e0;    /* PowderBlueLight */
+    --focus: #9cc5e0;
+    --link: #f0b8c4;
+    --on-pastel: #493d3b;
+    --note: #26343d;
+    --todo-bg: #4a2530;
+    --todo-line: #f094a8;
+    --danger: #ffa8b4;    /* error text: high contrast on ink */
   }
 }
 
@@ -67,9 +82,9 @@ body {
   padding: 24px 20px 72px;
   background: var(--bg);
   color: var(--text);
-  /* Quicksand + Nunito are self-hosted from assets/fonts - no webfont
+  /* Fraunces + Poppins are self-hosted from assets/fonts - no webfont
      request, so the page never phones a third party. */
-  font-family: "Nunito", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Poppins", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 17px;
   line-height: 1.65;
   -webkit-text-size-adjust: 100%;
@@ -104,27 +119,27 @@ main { max-width: 760px; margin: 0 auto; }
   border: 2px solid var(--line);
   border-radius: 999px;
   background: var(--badge);
-  color: #3d2c4e; /* on-pastel text stays plum in both themes */
-  font-family: "Quicksand", "Trebuchet MS", sans-serif;
-  font-weight: 700;
+  color: var(--on-pastel); /* on-pastel text stays dark in both themes */
+  font-family: "Fraunces", "Trebuchet MS", serif;
+  font-weight: 600;
   font-size: 15px;
   letter-spacing: 0.02em;
   text-decoration: none;
 }
 .site-nav { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 15px; }
-.site-nav a { color: var(--muted); text-decoration: none; font-weight: 700; }
+.site-nav a { color: var(--muted); text-decoration: none; font-weight: 500; }
 .site-nav a:hover { text-decoration: underline; text-decoration-thickness: 2px; }
 .site-nav a[aria-current="page"] { color: var(--text); text-decoration: underline; text-decoration-thickness: 2px; }
 
 /* ---- Headings -------------------------------------------------------- */
 h1, h2, h3 {
-  font-family: "Quicksand", "Trebuchet MS", sans-serif;
+  font-family: "Fraunces", "Trebuchet MS", serif;
   line-height: 1.2;
   text-wrap: balance;
 }
-h1 { font-size: clamp(28px, 6vw, 40px); margin: 0 0 12px; }
-h2 { font-size: 22px; margin: 0 0 12px; }
-h3 { font-size: 18px; margin: 20px 0 6px; }
+h1 { font-size: clamp(28px, 6vw, 40px); margin: 0 0 12px; font-weight: 600; }
+h2 { font-size: 22px; margin: 0 0 12px; font-weight: 500; }
+h3 { font-size: 18px; margin: 20px 0 6px; font-weight: 500; }
 
 .lede { margin: 0 0 8px; font-size: 18px; max-width: 40em; }
 .updated { margin: 0 0 28px; color: var(--muted); font-size: 15px; }
@@ -143,7 +158,7 @@ section {
 a { color: var(--link); text-decoration-thickness: 2px; }
 a:focus-visible,
 .wordmark:focus-visible,
-.button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.button:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
 
 p { margin: 0 0 14px; }
 p:last-child, ul:last-child, ol:last-child, table:last-child { margin-bottom: 0; }
@@ -200,27 +215,27 @@ tbody tr:last-child td { border-bottom: 0; }
   padding: 2px 10px;
   border-radius: 999px;
   background: var(--accent);
-  color: #3d2c4e; /* on-pastel text stays plum in both themes */
+  color: var(--on-pastel); /* on-pastel text stays dark in both themes */
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .button {
   display: inline-block;
   margin: 6px 0 10px;
   padding: 14px 28px;
-  border: 2px solid #3d2c4e;
+  border: 2px solid var(--line);
   border-radius: 999px;
-  /* Lilac + plum in BOTH themes: the brand rule for text on pastel fills. */
-  background: #c9a7f5;
-  color: #3d2c4e;
-  font-weight: 700;
+  /* Coral + espresso in BOTH themes: the brand rule for text on pastel fills. */
+  background: var(--primary);
+  color: var(--on-primary);
+  font-weight: 500;
   text-decoration: none;
 }
 
 /* ---- Survey form (research page) ------------------------------------- */
 /* Native radios, checkboxes and textarea with brand chrome: a real control
-   keeps platform keyboard + screen-reader behaviour, the 2dp plum outline and
+   keeps platform keyboard + screen-reader behaviour, the 2dp espresso outline and
    the 48dp target are ours. Nothing here runs unless the page asks for it. */
 [hidden] { display: none !important; }
 
@@ -231,9 +246,9 @@ legend {
   max-width: 100%;
   margin: 0 0 10px;
   padding: 0;
-  font-family: "Quicksand", "Trebuchet MS", sans-serif;
+  font-family: "Fraunces", "Trebuchet MS", serif;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.35;
 }
 
@@ -244,7 +259,7 @@ legend {
   padding: 1px 8px;
   border-radius: 999px;
   background: var(--badge);
-  color: #3d2c4e; /* on-pastel text stays plum in both themes */
+  color: var(--on-pastel); /* on-pastel text stays dark in both themes */
   font-size: 14px;
   text-align: center;
   vertical-align: 2px;
@@ -272,12 +287,12 @@ legend {
   width: 20px;
   height: 20px;
   margin: 2px 0 0;
-  accent-color: #c9a7f5;
+  accent-color: var(--primary);
 }
 /* :has keeps the checked state on the whole tile. The input itself still
    reports its state to assistive tech — this is decoration only. */
 .opt:has(input:checked) { background: var(--pill); }
-.opt:has(input:focus-visible) { outline: 3px solid var(--accent); outline-offset: 2px; }
+.opt:has(input:focus-visible) { outline: 3px solid var(--focus); outline-offset: 2px; }
 .opt:has(input:disabled) { background: var(--surface); cursor: default; }
 .opt input:disabled ~ span { opacity: 0.5; }
 
@@ -291,7 +306,7 @@ textarea {
   font: inherit;
   resize: vertical;
 }
-textarea:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+textarea:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 
 /* Honeypot: off-screen but still a real field, so a naive bot fills it in. */
 .hp {
@@ -324,7 +339,7 @@ button { font: inherit; cursor: pointer; }
 .card h2 { margin-bottom: 6px; }
 .card p { margin: 0; color: var(--muted); font-size: 16px; }
 .card:hover h2, .card:focus-visible h2 { text-decoration: underline; text-decoration-thickness: 2px; }
-.card:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; border-radius: 24px; }
+.card:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; border-radius: 24px; }
 
 /* ---- Placeholder blocks (must be gone before publishing) ------------- */
 .todo {
