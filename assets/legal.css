@@ -330,6 +330,20 @@ button { font: inherit; cursor: pointer; }
 .note.counter { margin: 6px 0 0; text-align: right; }
 .note.error { color: var(--danger); font-weight: 700; }
 
+/* The submit card: the pill button and the live status note sit CENTRED in
+   the card (the house pattern for lone cute blocks), in a column so the
+   status line appears directly under the button instead of shoving it up
+   into the corner of an otherwise empty card. The honeypot is absolutely
+   positioned, so flex ignores it. */
+.send {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.send .button { margin: 0; }
+.send .note { margin: 0; }
+
 /* ---- Page picker (index only) ---------------------------------------- */
 .cards { display: grid; gap: 16px; grid-template-columns: 1fr; }
 @media (min-width: 780px) { .cards { grid-template-columns: repeat(3, 1fr); } }
